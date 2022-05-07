@@ -4,20 +4,19 @@ import {
   Server,
   ServerCredentials,
 } from "@grpc/grpc-js";
-import { notification } from "../../proto/bundle";
+import { NotifyRequest, NotifyResponse } from "../../proto/notification_pb";
+import { notificationEvent } from "../event";
 
 export function notify(
-  call: ServerUnaryCall<
-    notification.v1.NotifyRequest,
-    notification.v1.NotifyResponse
-  >,
-  callback: sendUnaryData<notification.v1.NotifyResponse>
+  call: ServerUnaryCall<NotifyRequest, NotifyResponse>,
+  callback: sendUnaryData<NotifyResponse>
 ) {
-  const response = new notification.v1.NotifyResponse();
+  const response = new NotifyResponse();
 
-  console.log("Something");
-
-  // TODO: Handle the request
+  notificationEvent.emit("notify", {
+    user: "test",
+    text: "test",
+  });
 
   callback(null, response);
 }

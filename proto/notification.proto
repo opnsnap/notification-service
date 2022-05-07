@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package notification.v1;
 
-service NotifyService {
+service Notify {
   rpc Notify(NotifyRequest) returns (NotifyResponse) {}
 }
 

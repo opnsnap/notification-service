@@ -27,9 +27,9 @@ function deserialize_notification_v1_NotifyResponse(buffer_arg) {
 }
 
 
-var NotifyServiceService = exports.NotifyServiceService = {
+var NotifyService = exports.NotifyService = {
   notify: {
-    path: '/notification.v1.NotifyService/Notify',
+    path: '/notification.v1.Notify/Notify',
     requestStream: false,
     responseStream: false,
     requestType: notification_pb.NotifyRequest,
@@ -41,4 +41,4 @@ var NotifyServiceService = exports.NotifyServiceService = {
   },
 };
 
-exports.NotifyServiceClient = grpc.makeGenericClientConstructor(NotifyServiceService);
+exports.NotifyClient = grpc.makeGenericClientConstructor(NotifyService);
