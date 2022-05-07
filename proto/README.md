@@ -1,15 +1,17 @@
 # Protobuf
 
-## Compile with `protobufjs`
+## Requirements
 
-You need `protobufjs` globally installed:
+These packages need to be installed globally:
+- `grpc-tools`
+- `grpc_tools_node_protoc_ts`
 
-```
-npm i -g protobufjs
-```
+## Generate the bindings
 
-After that, you can run:
-```
-$> pbjs -t static-module -w commonjs -o bundle.js notification.proto
-$> pbts -o bundle.d.ts bundle.js
-```
+Simply run `buf generate`
+
+# References
+
+- [gRPC on Node.js with Buf and TypeScript — Part 1](https://scribe.nixnet.services/grpc-on-node-js-with-buf-and-typescript-part-1-5aad61bab03b)
+- [Use gRPC with Node.js and Typescript ](https://dev.to/devaddict/use-grpc-with-node-js-and-typescript-3c58)
+- [gRPC with TypeScript and Node.js example](https://github.com/Dev-Addict/grpc-node-ts)
