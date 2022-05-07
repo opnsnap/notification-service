@@ -1,16 +1,14 @@
 syntax = "proto3";
 
-package notification;
+package notification.v1;
 
-service Notify {
-    rpc Notify(NotifyRequest) returns (NotifyResponse) {}
+service NotifyService {
+  rpc Notify(NotifyRequest) returns (NotifyResponse) {}
 }
 
 message NotifyRequest {
-    string user_id = 1;
-    string message = 2;
+  string user_id = 1;
+  string message = 2;
 }
 
-message NotifyResponse {
-    string message = 1;
-}
+message NotifyResponse { string message = 1; }
