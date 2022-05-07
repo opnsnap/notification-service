@@ -1,3 +1,15 @@
-# Proto
+# Protobuf
 
-You need [buf](https://docs.buf.build/installation) to generate the bindings. After that, you can simply run `buf generate`. THere's also other useful commands like `buf lint`. 
+## Compile with `protobufjs`
+
+You need `protobufjs` globally installed:
+
+```
+npm i -g protobufjs
+```
+
+After that, you can run:
+```
+$> pbjs -t static-module -w commonjs -o bundle.js notification.proto
+$> pbts -o bundle.d.ts bundle.js
+```
