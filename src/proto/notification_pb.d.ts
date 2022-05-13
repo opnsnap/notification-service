@@ -33,8 +33,6 @@ export namespace NotifyRequest {
 }
 
 export class NotifyResponse extends jspb.Message { 
-    getResult(): string;
-    setResult(value: string): NotifyResponse;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): NotifyResponse.AsObject;
@@ -48,6 +46,5 @@ export class NotifyResponse extends jspb.Message {
 
 export namespace NotifyResponse {
     export type AsObject = {
-        result: string,
     }
 }

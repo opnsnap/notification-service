@@ -278,7 +278,7 @@ proto.notification.v1.NotifyResponse.prototype.toObject = function(opt_includeIn
  */
 proto.notification.v1.NotifyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    result: jspb.Message.getFieldWithDefault(msg, 1, "")
+
   };
 
   if (includeInstance) {
@@ -315,10 +315,6 @@ proto.notification.v1.NotifyResponse.deserializeBinaryFromReader = function(msg,
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setResult(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -348,31 +344,6 @@ proto.notification.v1.NotifyResponse.prototype.serializeBinary = function() {
  */
 proto.notification.v1.NotifyResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getResult();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional string result = 1;
- * @return {string}
- */
-proto.notification.v1.NotifyResponse.prototype.getResult = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.notification.v1.NotifyResponse} returns this
- */
-proto.notification.v1.NotifyResponse.prototype.setResult = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

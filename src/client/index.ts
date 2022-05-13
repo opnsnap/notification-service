@@ -21,5 +21,5 @@ client.notify(request, (error, response) => {
     process.exit(1);
   }
 
-  console.info(response.getResult());
+  console.info("Response:", response.toObject());
 });
