@@ -12,4 +12,5 @@ message NotifyRequest {
   string content = 3;
 }
 
-message NotifyResponse { string result = 1; }
+// TODO: Replace with google.protobuf.Empty
+message NotifyResponse {string result = 1; }

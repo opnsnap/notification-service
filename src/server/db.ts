@@ -30,7 +30,7 @@ export function connect(
 }
 
 const notificationSchema = new Schema<INotification>({
-  user: { type: String, required: true },
+  userId: { type: String, required: true },
   title: { type: String, required: true },
   content: { type: String, required: true },
   timestamp: { type: Date, required: true },
