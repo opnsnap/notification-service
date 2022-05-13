@@ -8,8 +8,9 @@ import { notify } from "./services/notify";
 import { NotifyService } from "../proto/notification_grpc_pb";
 import EventEmitter from "events";
 import { IEvent, notificationEvent } from "./event";
+import * as database from "./db";
 
-dotenv.config({ path: __dirname + "/../.env" });
+dotenv.config();
 
 const app = express();
 app.use(express.json({ limit: "1mb" }));
@@ -19,31 +20,51 @@ app.use("/ntfy/healthcheck", require("express-healthcheck")());
 const server = http.createServer(app);
 const io = new Server(server);
 
-io.of("/ntfy/ws").on("connection", (socket) => {
-  console.log("a user connected");
-
-  // TODO: Figure out how to uniquely identify a user
-  notificationEvent.on("notify-<user_id>", function (data: IEvent) {
-    console.log(data);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
-});
-
-server.listen(process.env.PORT || 8080, () => {
-  console.log(`Server is running on port ${process.env.PORT || 8080}`);
-});
-
-// GRPC
+// Database
 //
-const grpcServer = new grpc.Server();
-grpcServer.addService(NotifyService, { notify });
-grpcServer.bindAsync(
-  "0.0.0.0:50051",
-  grpc.ServerCredentials.createInsecure(),
-  () => {
-    grpcServer.start();
-  }
-);
+database.connect(
+  process.env.MONGODB_HOST!,
+  process.env.MONGODB_PORT!,
+  process.env.MONGODB_DATABASE!,
+  process.env.MONGODB_USER!,
+  process.env.MONGODB_PASSWORD!
+).then(msg => {
+  console.log(msg);
+  
+  // REST
+  //
+  server.listen(process.env.PORT || 8080, () => {
+    console.log(`Server is running on port ${process.env.PORT || 8080}`);
+  });
+
+  // GRPC
+  //
+  const grpcServer = new grpc.Server();
+  grpcServer.addService(NotifyService, { notify });
+  grpcServer.bindAsync(
+    "0.0.0.0:50051",
+    grpc.ServerCredentials.createInsecure(),
+    () => {
+      grpcServer.start();
+    }
+  );
+
+  // Websocket
+  //
+  io.of("/ntfy/ws").on("connection", (socket) => {
+    console.log("a user connected");
+
+    // TODO: Figure out how to uniquely identify a user
+    notificationEvent.on("notify-<user_id>", function (data: IEvent) {
+      console.log(data);
+    });
+
+    socket.on("disconnect", () => {
+      console.log("user disconnected");
+    });
+  });
+
+}).catch(err => {
+  console.log(err);
+  process.exit(-1);
+})
