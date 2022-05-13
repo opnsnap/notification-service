@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/server/index.ts",
+    "start:client": "ts-node src/client/index.ts",
     "build": "npx tsc",
-    "proto:build": "cd proto; buf build; cd .."
+    "proto:build": "cd proto; buf build; cd ..",
+    "proto:generate": "cd proto; buf generate; cd .."
   },
   "repository": {
     "type": "git",
