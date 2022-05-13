@@ -6,6 +6,10 @@ These packages need to be installed globally:
 - `grpc-tools`
 - `grpc_tools_node_protoc_ts`
 
+You also need `protoc` installed: 
+`sudo apt install protobuf-compiler`
+
+
 ## Generate the bindings
 
 Simply run `buf generate`
