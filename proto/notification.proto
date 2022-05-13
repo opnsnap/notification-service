@@ -8,7 +8,8 @@ service Notify {
 
 message NotifyRequest {
   string user_id = 1;
-  string message = 2;
+  string title = 2;
+  string content = 3;
 }
 
-message NotifyResponse { string message = 1; }
+message NotifyResponse { string result = 1; }

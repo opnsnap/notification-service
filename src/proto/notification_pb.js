@@ -89,7 +89,8 @@ proto.notification.v1.NotifyRequest.prototype.toObject = function(opt_includeIns
 proto.notification.v1.NotifyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    message: jspb.Message.getFieldWithDefault(msg, 2, "")
+    title: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    content: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -132,7 +133,11 @@ proto.notification.v1.NotifyRequest.deserializeBinaryFromReader = function(msg, 
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setMessage(value);
+      msg.setTitle(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setContent(value);
       break;
     default:
       reader.skipField();
@@ -170,10 +175,17 @@ proto.notification.v1.NotifyRequest.serializeBinaryToWriter = function(message, 
       f
     );
   }
-  f = message.getMessage();
+  f = message.getTitle();
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getContent();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -199,10 +211,10 @@ proto.notification.v1.NotifyRequest.prototype.setUserId = function(value) {
 
 
 /**
- * optional string message = 2;
+ * optional string title = 2;
  * @return {string}
  */
-proto.notification.v1.NotifyRequest.prototype.getMessage = function() {
+proto.notification.v1.NotifyRequest.prototype.getTitle = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -211,8 +223,26 @@ proto.notification.v1.NotifyRequest.prototype.getMessage = function() {
  * @param {string} value
  * @return {!proto.notification.v1.NotifyRequest} returns this
  */
-proto.notification.v1.NotifyRequest.prototype.setMessage = function(value) {
+proto.notification.v1.NotifyRequest.prototype.setTitle = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string content = 3;
+ * @return {string}
+ */
+proto.notification.v1.NotifyRequest.prototype.getContent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.notification.v1.NotifyRequest} returns this
+ */
+proto.notification.v1.NotifyRequest.prototype.setContent = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -248,7 +278,7 @@ proto.notification.v1.NotifyResponse.prototype.toObject = function(opt_includeIn
  */
 proto.notification.v1.NotifyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    message: jspb.Message.getFieldWithDefault(msg, 1, "")
+    result: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -287,7 +317,7 @@ proto.notification.v1.NotifyResponse.deserializeBinaryFromReader = function(msg,
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setMessage(value);
+      msg.setResult(value);
       break;
     default:
       reader.skipField();
@@ -318,7 +348,7 @@ proto.notification.v1.NotifyResponse.prototype.serializeBinary = function() {
  */
 proto.notification.v1.NotifyResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMessage();
+  f = message.getResult();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -329,10 +359,10 @@ proto.notification.v1.NotifyResponse.serializeBinaryToWriter = function(message,
 
 
 /**
- * optional string message = 1;
+ * optional string result = 1;
  * @return {string}
  */
-proto.notification.v1.NotifyResponse.prototype.getMessage = function() {
+proto.notification.v1.NotifyResponse.prototype.getResult = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -341,7 +371,7 @@ proto.notification.v1.NotifyResponse.prototype.getMessage = function() {
  * @param {string} value
  * @return {!proto.notification.v1.NotifyResponse} returns this
  */
-proto.notification.v1.NotifyResponse.prototype.setMessage = function(value) {
+proto.notification.v1.NotifyResponse.prototype.setResult = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 

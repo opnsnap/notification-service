@@ -9,8 +9,10 @@ import * as jspb from "google-protobuf";
 export class NotifyRequest extends jspb.Message { 
     getUserId(): string;
     setUserId(value: string): NotifyRequest;
-    getMessage(): string;
-    setMessage(value: string): NotifyRequest;
+    getTitle(): string;
+    setTitle(value: string): NotifyRequest;
+    getContent(): string;
+    setContent(value: string): NotifyRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): NotifyRequest.AsObject;
@@ -25,13 +27,14 @@ export class NotifyRequest extends jspb.Message {
 export namespace NotifyRequest {
     export type AsObject = {
         userId: string,
-        message: string,
+        title: string,
+        content: string,
     }
 }
 
 export class NotifyResponse extends jspb.Message { 
-    getMessage(): string;
-    setMessage(value: string): NotifyResponse;
+    getResult(): string;
+    setResult(value: string): NotifyResponse;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): NotifyResponse.AsObject;
@@ -45,6 +48,6 @@ export class NotifyResponse extends jspb.Message {
 
 export namespace NotifyResponse {
     export type AsObject = {
-        message: string,
+        result: string,
     }
 }
