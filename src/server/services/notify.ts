@@ -14,8 +14,9 @@ export function notify(
   const response = new NotifyResponse();
 
   notificationEvent.emit("notify", {
-    user: "test",
-    text: "test",
+    user: "Matthias",
+    title: "Alexander",
+    content: "Hey, what's up?",
   });
 
   callback(null, response);
