@@ -3,10 +3,8 @@ import express from "express";
 import { Server } from "socket.io";
 import * as http from "http";
 import * as grpc from "@grpc/grpc-js";
-import { ServerUnaryCall } from "grpc";
 import { notify } from "./services/notify";
 import { NotifyService } from "../proto/notification_grpc_pb";
-import EventEmitter from "events";
 import { INotification, notificationEvent } from "./event";
 import * as database from "./db";
 
@@ -56,9 +54,13 @@ database
     io.of("/ntfy/ws").on("connection", (socket) => {
       console.log("a user connected");
 
-      // TODO: Figure out how to uniquely identify a user
-      notificationEvent.on("notify-<user_id>", function (data: INotification) {
+      // TODO: Authenticated users with middleware and then only send it to one instead of broadcasting
+      // See:
+      // - https://socket.io/docs/v4/middlewares/
+      // - https://stackoverflow.com/questions/36788831/authenticating-socket-io-connections-using-jwt
+      notificationEvent.on("notify", function (data: INotification) {
         console.log(data);
+        socket.broadcast.emit("notify", data);
       });
 
       socket.on("disconnect", () => {

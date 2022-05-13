@@ -14,9 +14,10 @@ export function notify(
   const response = new NotifyResponse();
 
   notificationEvent.emit("notify", {
-    user: "Matthias",
-    title: "Alexander",
-    content: "Hey, what's up?",
+    user: call.request.getUserId(),
+    title: call.request.getTitle(),
+    content: call.request.getContent(),
+    timestamp: new Date(),
   });
 
   callback(null, response);
